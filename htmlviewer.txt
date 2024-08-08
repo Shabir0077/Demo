@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f8ff, #e0f7fa);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        .container {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .headline-button, .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s, font-size 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        .headline-button {
+            font-size: 26px;
+            background: linear-gradient(45deg, #0072ff, #00c6ff);
+            box-shadow: 0 4px 8px rgba(0, 114, 255, 0.5);
+        }
+        .button.watch {
+            background: linear-gradient(45deg, #ffb347, #ffcc33);
+            box-shadow: 0 4px 8px rgba(255, 179, 71, 0.5);
+        }
+        .button.download {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.5);
+        }
+        .headline-button:hover, .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            font-size: 22px;
+        }
+        .countdown {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 50px;
+            font-weight: bold;
+            color: #ffffff;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="message" class="message">Please wait for 30 seconds...</div>
+    <div id="countdown" class="countdown">30</div>
+    <div class="container" id="content">
+        <a href="#" class="headline-button" onclick="openLinks(); return false;">Click Here And Watch Full Video</a>
+        <div class="buttons">
+            <a href="#" class="button watch" onclick="handleLinkClick('watch'); return false;"><i class="fas fa-play"></i> Watch</a>
+            <a href="#" class="button download" onclick="handleLinkClick('download'); return false;"><i class="fas fa-download"></i> Download</a>
+        </div>
+    </div>
+    <script>
+        const links = {
+            watch: [
+                'https://www.highratecpm.com/crypqhah?key=8eaf6b610c595631c2a5e7cdcb6a3be8',
+                'https://psilaurgi.net/4/7811703'
+            ],
+            download: [
+                'https://www.highratecpm.com/crypqhah?key=8eaf6b610c595631c2a5e7cdcb6a3be8',
+                'https://psilaurgi.net/4/7811703'
+            ]
+        };
+        let clickCount = {
+            watch: 0,
+            download: 0
+        };
+
+        function handleLinkClick(type) {
+            clickCount[type]++;
+            const link = clickCount[type] === 1 ? links[type][0] : links[type][1];
+            window.open(link, '_blank');
+        }
+
+        function openLinks() {
+            links.watch.forEach(link => window.open(link, '_blank'));
+            links.download.forEach(link => window.open(link, '_blank'));
+        }
+
+        let countdown = 30;
+        const countdownElement = document.getElementById('countdown');
+        const messageElement = document.getElementById('message');
+        const contentElement = document.getElementById('content');
+
+        const interval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            if (countdown === 0) {
+                clearInterval(interval);
+                countdownElement.style.display = 'none';
+                messageElement.style.display = 'none';
+                contentElement.style.display = 'block';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
